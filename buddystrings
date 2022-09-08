@@ -1,0 +1,17 @@
+class Solution:
+    def buddyStrings(self, s1: str, s2: str) -> bool:
+        if s1==s2:
+            return max(Counter(s1).values())>1
+        if s1==s2 and s1[::-1]==s2:
+            return True
+        e=[]
+        for i in range(len(s1)):
+            if s1[i]!=s2[i]:
+                e.append(i)
+        if len(e)==2:
+            l=list(s1)
+            l[e[0]]=s1[e[1]]
+            l[e[1]]=s1[e[0]]
+            if ''.join(l)==s2:
+                return True
+        return False
